@@ -3,7 +3,7 @@ Library         Collections
 Library         ExcelLibrary
 Library         OperatingSystem
 Library         String
-# Library         DebugLibrary
+Library         DebugLibrary
 Library         SeleniumLibrary    
 Library         BuiltIn
 Library         Process
@@ -13,7 +13,7 @@ Resource        %{WORKSPACE_PRESENSATION_ROBOT}/metiers/jdd.resource
 Resource        %{WORKSPACE_PRESENSATION_ROBOT}/application/commun.resource
 Resource        %{WORKSPACE_PRESENSATION_ROBOT}/application/site_saunier_duval/pageAccueil.resource
 Resource        %{WORKSPACE_PRESENSATION_ROBOT}/application/site_saunier_duval/pageConfiguration_produit.resource
-
+Resource        %{WORKSPACE_PRESENSATION_ROBOT}/application/site_saunier_duval/pageValidation.resource
 
 #Parcours :
 Resource        %{WORKSPACE_PRESENSATION_ROBOT}/application/parcours/test_auto.resource

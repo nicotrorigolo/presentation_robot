@@ -18,7 +18,7 @@ Cliquer sur element
     ...                                                 error=Element non visible sur la page
     SeleniumLibrary.Wait Until Element Is Enabled       locator=${locator}
     ...                                                 error=Element non chargé completement
-    SeleniumLibrary.Click Element    locator=${locator}
+    BuiltIn.Wait Until Keyword Succeeds    3x    1 sec    SeleniumLibrary.Click Element    locator=${locator}
 
 Saisir sur element
     [Arguments]    ${locator}    ${text}
@@ -32,14 +32,16 @@ Saisir sur element
     SeleniumLibrary.Input Text                          locator=${locator}
     ...                                                 text=${text}
 
-
-
-
-
-
-
-
-
+Cocher checkbox
+    [Arguments]    ${locator}
+    SeleniumLibrary.Wait Until Page Contains Element    locator=${locator}
+    ...                                                 error=Element non present sur la page
+    commun.Scroller vers element                        locator=${locator}
+    SeleniumLibrary.Wait Until Element Is Visible       locator=${locator}
+    ...                                                 error=Element non visible sur la page
+    SeleniumLibrary.Wait Until Element Is Enabled       locator=${locator}
+    ...                                                 error=Element non chargé completement
+    SeleniumLibrary.Select Checkbox                     locator=${locator}
 
 Scroller vers element
     [Arguments]    ${locator}
