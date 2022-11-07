@@ -13,24 +13,41 @@ Configuration produit
 
 Configurer le produit
     pageConfiguration_produit.Choisir type de chauffage actuel
+    #Sleep    0.5
     pageConfiguration_produit.Choisir type de chauffage souhaite
+    #Sleep    0.5
     pageConfiguration_produit.Choisir emetteurs de chaleur actuels
+    #Sleep    0.5
     pageConfiguration_produit.Choisir type de logement
+    #Sleep    0.5
     pageConfiguration_produit.Choisir annee de construction
+    #Sleep    0.5
     pageConfiguration_produit.Choisir renovation
+    #Sleep    0.5
     pageConfiguration_produit.Choisir Surface habitable
+
 
 Renseigner coordonnees
     pageConfiguration_produit.Choisir civilite
+    #Sleep    0.5
     pageConfiguration_produit.Saisir prenom
+    #Sleep    0.5
     pageConfiguration_produit.Saisir nom
+    #Sleep    0.5
     pageConfiguration_produit.Saisir mail
+    #Sleep    0.5
     pageConfiguration_produit.Saisir numero de telephone
+    #Sleep    0.5
     pageConfiguration_produit.Saisir numero de rue
+    #Sleep    0.5
     pageConfiguration_produit.Saisir nom de rue
+    #Sleep    0.5
     pageConfiguration_produit.Saisir code postal
+    #Sleep    0.5
     pageConfiguration_produit.Saisir ville
+    #Sleep    0.5
     pageConfiguration_produit.Saisir date de rendez vous souhaite
+    #Sleep    0.5
 
 Cocher checkbox obligatoire
     pageConfiguration_produit.Cocher checkbox Politique de Confidentialite
@@ -107,9 +124,10 @@ Cocher checkbox Politique de Confidentialite
 
 Cocher checkbox Condition general
     commun.Cliquer sur element    locator=//input[@name="termsOfServiceOptIn"]/..//div[@class="sui-checkbox-container"]
+
 Cocher checkbox Recevoir par email des informations commerciales
     commun.Cliquer sur element    locator=//input[@name="optInEmail"]/..//div[@class="sui-checkbox-container"]
-
+    
 
 
 

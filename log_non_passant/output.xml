@@ -1,0 +1,3095 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.6 on win32)" generated="20221107 23:48:56.754" rpa="false" schemaversion="3">
+<suite id="s1" name="testSuiteGenerated" source="C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers\testSuiteGenerated.robot">
+<kw name="Initialisation des Tests Cases" type="SETUP">
+<kw name="Set Selenium Timeout" library="SeleniumLibrary">
+<arg>${GLOBAL_TIMEOUT}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" starttime="20221107 23:48:57.734" endtime="20221107 23:48:57.735"/>
+</kw>
+<kw name="Creer dictionnaire global variables" library="jdd">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${TEMP_DICT_GLOBAL}</var>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221107 23:48:57.737" level="INFO">${TEMP_DICT_GLOBAL} = {}</msg>
+<status status="PASS" starttime="20221107 23:48:57.736" endtime="20221107 23:48:57.737"/>
+</kw>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${EXCEL_FILE_CHEMIN}</arg>
+<arg>NONE</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20221107 23:48:57.737" endtime="20221107 23:48:57.746"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${numero_cas_de_test_en_cours}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:57.746" level="INFO">${numero_cas_de_test_en_cours} = 0</msg>
+<status status="PASS" starttime="20221107 23:48:57.746" endtime="20221107 23:48:57.747"/>
+</kw>
+<kw name="Read Excel Row" library="ExcelLibrary">
+<var>${colonne_variables}</var>
+<arg>row_num=0</arg>
+<arg>col_offset=0</arg>
+<arg>max_num=0</arg>
+<arg>sheet_name=${EXCEL_FEUILLE}</arg>
+<doc>Returns content of a row from the current sheet of the document.</doc>
+<msg timestamp="20221107 23:48:57.747" level="INFO">${colonne_variables} = ['Nom variable', 'Commentaires', 'cas_passant', 'cas_non_passant']</msg>
+<status status="PASS" starttime="20221107 23:48:57.747" endtime="20221107 23:48:57.747"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${nb_colonne_variables}</var>
+<arg>${colonne_variables}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20221107 23:48:57.747" level="INFO">Length is 4</msg>
+<msg timestamp="20221107 23:48:57.748" level="INFO">${nb_colonne_variables} = 4</msg>
+<status status="PASS" starttime="20221107 23:48:57.747" endtime="20221107 23:48:57.748"/>
+</kw>
+<kw name="Read Excel Column" library="ExcelLibrary">
+<var>${lignes_variables}</var>
+<arg>col_num=1</arg>
+<arg>row_offset=0</arg>
+<arg>max_num=0</arg>
+<arg>sheet_name=${EXCEL_FEUILLE}</arg>
+<doc>Returns content of a column from the current sheet of the document.</doc>
+<msg timestamp="20221107 23:48:57.748" level="INFO">${lignes_variables} = ['Nom variable', 'Utilisation', None, None, 'url', 'browser', 'pageAccueil', 'choisir_cookies', 'pageConfiguration_produit', 'type_de_chauffage_actuel', 'type_de_chauffage_souhaite', 'emetteur_de_chal...</msg>
+<status status="PASS" starttime="20221107 23:48:57.748" endtime="20221107 23:48:57.748"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${nb_lignes_variables}</var>
+<arg>${lignes_variables}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20221107 23:48:57.748" level="INFO">Length is 26</msg>
+<msg timestamp="20221107 23:48:57.749" level="INFO">${nb_lignes_variables} = 26</msg>
+<status status="PASS" starttime="20221107 23:48:57.748" endtime="20221107 23:48:57.749"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${numero_de_la_colonne}</var>
+<value>${COLONNE_INUTILE} + 1</value>
+<value>${nb_colonne_variables} + 1</value>
+<iter>
+<var name="${numero_de_la_colonne}">3</var>
+<kw name="Recuperer JDD" library="jdd">
+<arg>${numero_de_la_colonne}</arg>
+<arg>${nb_lignes_variables}</arg>
+<arg>${EXCEL_FEUILLE}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${TEMP_DICT}</var>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221107 23:48:57.750" level="INFO">${TEMP_DICT} = {}</msg>
+<status status="PASS" starttime="20221107 23:48:57.750" endtime="20221107 23:48:57.750"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${cellule}</var>
+<value>${nb_lignes_variables}</value>
+<iter>
+<var name="${cellule}">0</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.751" level="INFO">${cellule} = 1</msg>
+<status status="PASS" starttime="20221107 23:48:57.750" endtime="20221107 23:48:57.751"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.752" level="INFO">${nom_var} = Nom variable</msg>
+<status status="PASS" starttime="20221107 23:48:57.751" endtime="20221107 23:48:57.752"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.753" level="INFO">${val_var} = cas_passant</msg>
+<status status="PASS" starttime="20221107 23:48:57.752" endtime="20221107 23:48:57.753"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.754" endtime="20221107 23:48:57.754"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.750" endtime="20221107 23:48:57.754"/>
+</iter>
+<iter>
+<var name="${cellule}">1</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.755" level="INFO">${cellule} = 2</msg>
+<status status="PASS" starttime="20221107 23:48:57.754" endtime="20221107 23:48:57.755"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.755" level="INFO">${nom_var} = Utilisation</msg>
+<status status="PASS" starttime="20221107 23:48:57.755" endtime="20221107 23:48:57.755"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.756" level="INFO">${val_var} = Oui</msg>
+<status status="PASS" starttime="20221107 23:48:57.755" endtime="20221107 23:48:57.756"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.756" endtime="20221107 23:48:57.757"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.754" endtime="20221107 23:48:57.757"/>
+</iter>
+<iter>
+<var name="${cellule}">2</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.758" level="INFO">${cellule} = 3</msg>
+<status status="PASS" starttime="20221107 23:48:57.757" endtime="20221107 23:48:57.758"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.759" level="INFO">${nom_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.758" endtime="20221107 23:48:57.759"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.760" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.759" endtime="20221107 23:48:57.760"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.760" endtime="20221107 23:48:57.760"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.757" endtime="20221107 23:48:57.760"/>
+</iter>
+<iter>
+<var name="${cellule}">3</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.761" level="INFO">${cellule} = 4</msg>
+<status status="PASS" starttime="20221107 23:48:57.760" endtime="20221107 23:48:57.761"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.761" level="INFO">${nom_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.761" endtime="20221107 23:48:57.761"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.762" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.761" endtime="20221107 23:48:57.762"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.762" endtime="20221107 23:48:57.762"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.760" endtime="20221107 23:48:57.762"/>
+</iter>
+<iter>
+<var name="${cellule}">4</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.763" level="INFO">${cellule} = 5</msg>
+<status status="PASS" starttime="20221107 23:48:57.762" endtime="20221107 23:48:57.763"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.763" level="INFO">${nom_var} = url</msg>
+<status status="PASS" starttime="20221107 23:48:57.763" endtime="20221107 23:48:57.763"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.764" level="INFO">${val_var} = https://www.saunierduval.fr/particulier/</msg>
+<status status="PASS" starttime="20221107 23:48:57.763" endtime="20221107 23:48:57.764"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.764" endtime="20221107 23:48:57.764"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.762" endtime="20221107 23:48:57.764"/>
+</iter>
+<iter>
+<var name="${cellule}">5</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.765" level="INFO">${cellule} = 6</msg>
+<status status="PASS" starttime="20221107 23:48:57.765" endtime="20221107 23:48:57.765"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.766" level="INFO">${nom_var} = browser</msg>
+<status status="PASS" starttime="20221107 23:48:57.765" endtime="20221107 23:48:57.766"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.767" level="INFO">${val_var} = chrome</msg>
+<status status="PASS" starttime="20221107 23:48:57.766" endtime="20221107 23:48:57.767"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.767" endtime="20221107 23:48:57.767"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.765" endtime="20221107 23:48:57.767"/>
+</iter>
+<iter>
+<var name="${cellule}">6</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.771" level="INFO">${cellule} = 7</msg>
+<status status="PASS" starttime="20221107 23:48:57.769" endtime="20221107 23:48:57.771"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.772" level="INFO">${nom_var} = pageAccueil</msg>
+<status status="PASS" starttime="20221107 23:48:57.771" endtime="20221107 23:48:57.772"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.773" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.772" endtime="20221107 23:48:57.773"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.773" endtime="20221107 23:48:57.773"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.767" endtime="20221107 23:48:57.773"/>
+</iter>
+<iter>
+<var name="${cellule}">7</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.774" level="INFO">${cellule} = 8</msg>
+<status status="PASS" starttime="20221107 23:48:57.774" endtime="20221107 23:48:57.774"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.775" level="INFO">${nom_var} = choisir_cookies</msg>
+<status status="PASS" starttime="20221107 23:48:57.774" endtime="20221107 23:48:57.775"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.777" level="INFO">${val_var} = Tout refuser</msg>
+<status status="PASS" starttime="20221107 23:48:57.775" endtime="20221107 23:48:57.777"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.778" endtime="20221107 23:48:57.779"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.773" endtime="20221107 23:48:57.779"/>
+</iter>
+<iter>
+<var name="${cellule}">8</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.780" level="INFO">${cellule} = 9</msg>
+<status status="PASS" starttime="20221107 23:48:57.779" endtime="20221107 23:48:57.780"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.781" level="INFO">${nom_var} = pageConfiguration_produit</msg>
+<status status="PASS" starttime="20221107 23:48:57.780" endtime="20221107 23:48:57.781"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.781" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.781" endtime="20221107 23:48:57.781"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.781" endtime="20221107 23:48:57.782"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.779" endtime="20221107 23:48:57.782"/>
+</iter>
+<iter>
+<var name="${cellule}">9</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.782" level="INFO">${cellule} = 10</msg>
+<status status="PASS" starttime="20221107 23:48:57.782" endtime="20221107 23:48:57.782"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.783" level="INFO">${nom_var} = type_de_chauffage_actuel</msg>
+<status status="PASS" starttime="20221107 23:48:57.783" endtime="20221107 23:48:57.783"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.785" level="INFO">${val_var} = Fioul</msg>
+<status status="PASS" starttime="20221107 23:48:57.783" endtime="20221107 23:48:57.785"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.787" endtime="20221107 23:48:57.788"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.782" endtime="20221107 23:48:57.789"/>
+</iter>
+<iter>
+<var name="${cellule}">10</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.792" level="INFO">${cellule} = 11</msg>
+<status status="PASS" starttime="20221107 23:48:57.791" endtime="20221107 23:48:57.792"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.793" level="INFO">${nom_var} = type_de_chauffage_souhaite</msg>
+<status status="PASS" starttime="20221107 23:48:57.792" endtime="20221107 23:48:57.793"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.794" level="INFO">${val_var} = Pompe à chaleur</msg>
+<status status="PASS" starttime="20221107 23:48:57.793" endtime="20221107 23:48:57.794"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.794" endtime="20221107 23:48:57.795"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.790" endtime="20221107 23:48:57.795"/>
+</iter>
+<iter>
+<var name="${cellule}">11</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.795" level="INFO">${cellule} = 12</msg>
+<status status="PASS" starttime="20221107 23:48:57.795" endtime="20221107 23:48:57.795"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.796" level="INFO">${nom_var} = emetteur_de_chaleur_actuels</msg>
+<status status="PASS" starttime="20221107 23:48:57.795" endtime="20221107 23:48:57.796"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.797" level="INFO">${val_var} = Chauffage au sol</msg>
+<status status="PASS" starttime="20221107 23:48:57.796" endtime="20221107 23:48:57.797"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.797" endtime="20221107 23:48:57.797"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.795" endtime="20221107 23:48:57.797"/>
+</iter>
+<iter>
+<var name="${cellule}">12</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.798" level="INFO">${cellule} = 13</msg>
+<status status="PASS" starttime="20221107 23:48:57.797" endtime="20221107 23:48:57.798"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.798" level="INFO">${nom_var} = type_de_logement</msg>
+<status status="PASS" starttime="20221107 23:48:57.798" endtime="20221107 23:48:57.798"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.799" level="INFO">${val_var} = Maison individuelle</msg>
+<status status="PASS" starttime="20221107 23:48:57.798" endtime="20221107 23:48:57.799"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.799" endtime="20221107 23:48:57.800"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.797" endtime="20221107 23:48:57.800"/>
+</iter>
+<iter>
+<var name="${cellule}">13</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.800" level="INFO">${cellule} = 14</msg>
+<status status="PASS" starttime="20221107 23:48:57.800" endtime="20221107 23:48:57.800"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.804" level="INFO">${nom_var} = annee_de_construction</msg>
+<status status="PASS" starttime="20221107 23:48:57.801" endtime="20221107 23:48:57.804"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.807" level="INFO">${val_var} = 2002-2007</msg>
+<status status="PASS" starttime="20221107 23:48:57.804" endtime="20221107 23:48:57.807"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.808" endtime="20221107 23:48:57.808"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.800" endtime="20221107 23:48:57.808"/>
+</iter>
+<iter>
+<var name="${cellule}">14</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.810" level="INFO">${cellule} = 15</msg>
+<status status="PASS" starttime="20221107 23:48:57.809" endtime="20221107 23:48:57.810"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.811" level="INFO">${nom_var} = type_renovation</msg>
+<status status="PASS" starttime="20221107 23:48:57.810" endtime="20221107 23:48:57.811"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.812" level="INFO">${val_var} = Toiture</msg>
+<status status="PASS" starttime="20221107 23:48:57.811" endtime="20221107 23:48:57.812"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.812" endtime="20221107 23:48:57.812"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.809" endtime="20221107 23:48:57.812"/>
+</iter>
+<iter>
+<var name="${cellule}">15</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.813" level="INFO">${cellule} = 16</msg>
+<status status="PASS" starttime="20221107 23:48:57.813" endtime="20221107 23:48:57.813"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.813" level="INFO">${nom_var} = surface_habitable</msg>
+<status status="PASS" starttime="20221107 23:48:57.813" endtime="20221107 23:48:57.813"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.814" level="INFO">${val_var} = 10</msg>
+<status status="PASS" starttime="20221107 23:48:57.814" endtime="20221107 23:48:57.814"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.814" endtime="20221107 23:48:57.814"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.812" endtime="20221107 23:48:57.814"/>
+</iter>
+<iter>
+<var name="${cellule}">16</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.815" level="INFO">${cellule} = 17</msg>
+<status status="PASS" starttime="20221107 23:48:57.815" endtime="20221107 23:48:57.815"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.816" level="INFO">${nom_var} = civilite</msg>
+<status status="PASS" starttime="20221107 23:48:57.815" endtime="20221107 23:48:57.816"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.816" level="INFO">${val_var} = M.</msg>
+<status status="PASS" starttime="20221107 23:48:57.816" endtime="20221107 23:48:57.816"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.816" endtime="20221107 23:48:57.817"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.815" endtime="20221107 23:48:57.817"/>
+</iter>
+<iter>
+<var name="${cellule}">17</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.817" level="INFO">${cellule} = 18</msg>
+<status status="PASS" starttime="20221107 23:48:57.817" endtime="20221107 23:48:57.817"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.820" level="INFO">${nom_var} = prenom</msg>
+<status status="PASS" starttime="20221107 23:48:57.818" endtime="20221107 23:48:57.820"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.822" level="INFO">${val_var} = nini</msg>
+<status status="PASS" starttime="20221107 23:48:57.821" endtime="20221107 23:48:57.823"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.823" endtime="20221107 23:48:57.824"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.817" endtime="20221107 23:48:57.824"/>
+</iter>
+<iter>
+<var name="${cellule}">18</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.824" level="INFO">${cellule} = 19</msg>
+<status status="PASS" starttime="20221107 23:48:57.824" endtime="20221107 23:48:57.824"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.825" level="INFO">${nom_var} = nom</msg>
+<status status="PASS" starttime="20221107 23:48:57.824" endtime="20221107 23:48:57.825"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.826" level="INFO">${val_var} = nono</msg>
+<status status="PASS" starttime="20221107 23:48:57.825" endtime="20221107 23:48:57.826"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.826" endtime="20221107 23:48:57.826"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.824" endtime="20221107 23:48:57.826"/>
+</iter>
+<iter>
+<var name="${cellule}">19</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.827" level="INFO">${cellule} = 20</msg>
+<status status="PASS" starttime="20221107 23:48:57.826" endtime="20221107 23:48:57.827"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.827" level="INFO">${nom_var} = mail</msg>
+<status status="PASS" starttime="20221107 23:48:57.827" endtime="20221107 23:48:57.827"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.828" level="INFO">${val_var} = nono@nini.fr</msg>
+<status status="PASS" starttime="20221107 23:48:57.827" endtime="20221107 23:48:57.828"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.828" endtime="20221107 23:48:57.828"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.826" endtime="20221107 23:48:57.828"/>
+</iter>
+<iter>
+<var name="${cellule}">20</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.829" level="INFO">${cellule} = 21</msg>
+<status status="PASS" starttime="20221107 23:48:57.828" endtime="20221107 23:48:57.829"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.829" level="INFO">${nom_var} = numero_de_telephone</msg>
+<status status="PASS" starttime="20221107 23:48:57.829" endtime="20221107 23:48:57.829"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.830" level="INFO">${val_var} = 0611111111</msg>
+<status status="PASS" starttime="20221107 23:48:57.829" endtime="20221107 23:48:57.830"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.830" endtime="20221107 23:48:57.830"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.828" endtime="20221107 23:48:57.830"/>
+</iter>
+<iter>
+<var name="${cellule}">21</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.831" level="INFO">${cellule} = 22</msg>
+<status status="PASS" starttime="20221107 23:48:57.831" endtime="20221107 23:48:57.831"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.831" level="INFO">${nom_var} = numero_de_rue</msg>
+<status status="PASS" starttime="20221107 23:48:57.831" endtime="20221107 23:48:57.831"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.832" level="INFO">${val_var} = 15</msg>
+<status status="PASS" starttime="20221107 23:48:57.832" endtime="20221107 23:48:57.832"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.832" endtime="20221107 23:48:57.833"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.830" endtime="20221107 23:48:57.833"/>
+</iter>
+<iter>
+<var name="${cellule}">22</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.833" level="INFO">${cellule} = 23</msg>
+<status status="PASS" starttime="20221107 23:48:57.833" endtime="20221107 23:48:57.833"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.835" level="INFO">${nom_var} = nom_rue</msg>
+<status status="PASS" starttime="20221107 23:48:57.834" endtime="20221107 23:48:57.835"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.839" level="INFO">${val_var} = rue de la paix</msg>
+<status status="PASS" starttime="20221107 23:48:57.836" endtime="20221107 23:48:57.839"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.839" endtime="20221107 23:48:57.840"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.833" endtime="20221107 23:48:57.841"/>
+</iter>
+<iter>
+<var name="${cellule}">23</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.842" level="INFO">${cellule} = 24</msg>
+<status status="PASS" starttime="20221107 23:48:57.841" endtime="20221107 23:48:57.842"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.843" level="INFO">${nom_var} = code_postal</msg>
+<status status="PASS" starttime="20221107 23:48:57.842" endtime="20221107 23:48:57.843"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.845" level="INFO">${val_var} = 49100</msg>
+<status status="PASS" starttime="20221107 23:48:57.843" endtime="20221107 23:48:57.845"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.845" endtime="20221107 23:48:57.846"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.841" endtime="20221107 23:48:57.846"/>
+</iter>
+<iter>
+<var name="${cellule}">24</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.848" level="INFO">${cellule} = 25</msg>
+<status status="PASS" starttime="20221107 23:48:57.847" endtime="20221107 23:48:57.848"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.850" level="INFO">${nom_var} = ville</msg>
+<status status="PASS" starttime="20221107 23:48:57.848" endtime="20221107 23:48:57.850"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.854" level="INFO">${val_var} = Nantes</msg>
+<status status="PASS" starttime="20221107 23:48:57.850" endtime="20221107 23:48:57.854"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.854" endtime="20221107 23:48:57.855"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.846" endtime="20221107 23:48:57.855"/>
+</iter>
+<iter>
+<var name="${cellule}">25</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.857" level="INFO">${cellule} = 26</msg>
+<status status="PASS" starttime="20221107 23:48:57.856" endtime="20221107 23:48:57.858"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.860" level="INFO">${nom_var} = date_de_rendez_vous_souhaite</msg>
+<status status="PASS" starttime="20221107 23:48:57.858" endtime="20221107 23:48:57.860"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.863" level="INFO">${val_var} = 01/01/2024</msg>
+<status status="PASS" starttime="20221107 23:48:57.861" endtime="20221107 23:48:57.863"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.863" endtime="20221107 23:48:57.865"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.856" endtime="20221107 23:48:57.865"/>
+</iter>
+<status status="PASS" starttime="20221107 23:48:57.750" endtime="20221107 23:48:57.865"/>
+</for>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${TEMP_DICT}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221107 23:48:57.867" level="INFO">${TEMP_DICT} = {'Nom variable': 'cas_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'pageC...</msg>
+<status status="PASS" starttime="20221107 23:48:57.866" endtime="20221107 23:48:57.868"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.749" endtime="20221107 23:48:57.868"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT_GLOBAL}</arg>
+<arg>${numero_cas_de_test_en_cours}</arg>
+<arg>${TEMP_DICT}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.869" endtime="20221107 23:48:57.871"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${numero_cas_de_test_en_cours}</var>
+<arg>${numero_cas_de_test_en_cours} + 1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.874" level="INFO">${numero_cas_de_test_en_cours} = 1</msg>
+<status status="PASS" starttime="20221107 23:48:57.871" endtime="20221107 23:48:57.874"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.749" endtime="20221107 23:48:57.874"/>
+</iter>
+<iter>
+<var name="${numero_de_la_colonne}">4</var>
+<kw name="Recuperer JDD" library="jdd">
+<arg>${numero_de_la_colonne}</arg>
+<arg>${nb_lignes_variables}</arg>
+<arg>${EXCEL_FEUILLE}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${TEMP_DICT}</var>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221107 23:48:57.877" level="INFO">${TEMP_DICT} = {}</msg>
+<status status="PASS" starttime="20221107 23:48:57.876" endtime="20221107 23:48:57.877"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${cellule}</var>
+<value>${nb_lignes_variables}</value>
+<iter>
+<var name="${cellule}">0</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.878" level="INFO">${cellule} = 1</msg>
+<status status="PASS" starttime="20221107 23:48:57.878" endtime="20221107 23:48:57.878"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.880" level="INFO">${nom_var} = Nom variable</msg>
+<status status="PASS" starttime="20221107 23:48:57.879" endtime="20221107 23:48:57.880"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.882" level="INFO">${val_var} = cas_non_passant</msg>
+<status status="PASS" starttime="20221107 23:48:57.881" endtime="20221107 23:48:57.882"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.883" endtime="20221107 23:48:57.884"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.877" endtime="20221107 23:48:57.884"/>
+</iter>
+<iter>
+<var name="${cellule}">1</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.886" level="INFO">${cellule} = 2</msg>
+<status status="PASS" starttime="20221107 23:48:57.885" endtime="20221107 23:48:57.886"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.887" level="INFO">${nom_var} = Utilisation</msg>
+<status status="PASS" starttime="20221107 23:48:57.886" endtime="20221107 23:48:57.888"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.889" level="INFO">${val_var} = Oui</msg>
+<status status="PASS" starttime="20221107 23:48:57.888" endtime="20221107 23:48:57.890"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.890" endtime="20221107 23:48:57.891"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.884" endtime="20221107 23:48:57.891"/>
+</iter>
+<iter>
+<var name="${cellule}">2</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.893" level="INFO">${cellule} = 3</msg>
+<status status="PASS" starttime="20221107 23:48:57.892" endtime="20221107 23:48:57.893"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.895" level="INFO">${nom_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.893" endtime="20221107 23:48:57.895"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.898" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.896" endtime="20221107 23:48:57.898"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.898" endtime="20221107 23:48:57.902"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.891" endtime="20221107 23:48:57.902"/>
+</iter>
+<iter>
+<var name="${cellule}">3</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.904" level="INFO">${cellule} = 4</msg>
+<status status="PASS" starttime="20221107 23:48:57.903" endtime="20221107 23:48:57.904"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.907" level="INFO">${nom_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.904" endtime="20221107 23:48:57.907"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.910" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.908" endtime="20221107 23:48:57.910"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.910" endtime="20221107 23:48:57.911"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.902" endtime="20221107 23:48:57.911"/>
+</iter>
+<iter>
+<var name="${cellule}">4</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.914" level="INFO">${cellule} = 5</msg>
+<status status="PASS" starttime="20221107 23:48:57.912" endtime="20221107 23:48:57.914"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.917" level="INFO">${nom_var} = url</msg>
+<status status="PASS" starttime="20221107 23:48:57.915" endtime="20221107 23:48:57.918"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.921" level="INFO">${val_var} = https://www.saunierduval.fr/particulier/</msg>
+<status status="PASS" starttime="20221107 23:48:57.918" endtime="20221107 23:48:57.921"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.921" endtime="20221107 23:48:57.922"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.912" endtime="20221107 23:48:57.923"/>
+</iter>
+<iter>
+<var name="${cellule}">5</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.924" level="INFO">${cellule} = 6</msg>
+<status status="PASS" starttime="20221107 23:48:57.923" endtime="20221107 23:48:57.924"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.926" level="INFO">${nom_var} = browser</msg>
+<status status="PASS" starttime="20221107 23:48:57.925" endtime="20221107 23:48:57.926"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.929" level="INFO">${val_var} = chrome</msg>
+<status status="PASS" starttime="20221107 23:48:57.927" endtime="20221107 23:48:57.929"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.929" endtime="20221107 23:48:57.930"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.923" endtime="20221107 23:48:57.930"/>
+</iter>
+<iter>
+<var name="${cellule}">6</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.932" level="INFO">${cellule} = 7</msg>
+<status status="PASS" starttime="20221107 23:48:57.931" endtime="20221107 23:48:57.932"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.933" level="INFO">${nom_var} = pageAccueil</msg>
+<status status="PASS" starttime="20221107 23:48:57.932" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.930" endtime="20221107 23:48:57.934"/>
+</iter>
+<iter>
+<var name="${cellule}">7</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${cellule} = 8</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${nom_var} = choisir_cookies</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${val_var} = Tout refuser</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</iter>
+<iter>
+<var name="${cellule}">8</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${cellule} = 9</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${nom_var} = pageConfiguration_produit</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${val_var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</iter>
+<iter>
+<var name="${cellule}">9</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${cellule} = 10</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${nom_var} = type_de_chauffage_actuel</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.934" level="INFO">${val_var} = Fioul</msg>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.934"/>
+</iter>
+<iter>
+<var name="${cellule}">10</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.947" level="INFO">${cellule} = 11</msg>
+<status status="PASS" starttime="20221107 23:48:57.947" endtime="20221107 23:48:57.947"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.949" level="INFO">${nom_var} = type_de_chauffage_souhaite</msg>
+<status status="PASS" starttime="20221107 23:48:57.947" endtime="20221107 23:48:57.949"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.949" level="INFO">${val_var} = Pompe a velo</msg>
+<status status="PASS" starttime="20221107 23:48:57.949" endtime="20221107 23:48:57.949"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.949" endtime="20221107 23:48:57.951"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.934" endtime="20221107 23:48:57.951"/>
+</iter>
+<iter>
+<var name="${cellule}">11</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.952" level="INFO">${cellule} = 12</msg>
+<status status="PASS" starttime="20221107 23:48:57.951" endtime="20221107 23:48:57.952"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.952" level="INFO">${nom_var} = emetteur_de_chaleur_actuels</msg>
+<status status="PASS" starttime="20221107 23:48:57.952" endtime="20221107 23:48:57.952"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = Chauffage au sol</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.951" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">12</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 13</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${nom_var} = type_de_logement</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = Maison individuelle</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">13</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 14</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${nom_var} = annee_de_construction</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = 2002-2007</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">14</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 15</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${nom_var} = type_renovation</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = Toiture</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">15</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 16</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${nom_var} = surface_habitable</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = 10</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">16</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 17</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${nom_var} = civilite</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = M.</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">17</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 18</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${nom_var} = prenom</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${val_var} = nini</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</iter>
+<iter>
+<var name="${cellule}">18</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.953" level="INFO">${cellule} = 19</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.953"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = nom</msg>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = nono</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.953" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">19</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 20</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = mail</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = nono@nini.fr</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">20</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 21</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = numero_de_telephone</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = 0611111111</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">21</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 22</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = numero_de_rue</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = 15</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">22</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 23</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = nom_rue</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = rue de la paix</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">23</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 24</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = code_postal</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = 49100</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">24</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 25</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${nom_var} = ville</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${val_var} = Nantes</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</iter>
+<iter>
+<var name="${cellule}">25</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${cellule}</var>
+<arg>1 + ${cellule}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.969" level="INFO">${cellule} = 26</msg>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.969"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${nom_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=1</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.985" level="INFO">${nom_var} = date_de_rendez_vous_souhaite</msg>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${val_var}</var>
+<arg>row_num=${cellule}</arg>
+<arg>col_num=${numero_de_la_colonne}</arg>
+<arg>sheet_name=${excel_feuille_liste}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20221107 23:48:57.985" level="INFO">${val_var} = 01/01/2024</msg>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT}</arg>
+<arg>${nom_var}</arg>
+<arg>${val_var}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.969" endtime="20221107 23:48:57.985"/>
+</iter>
+<status status="PASS" starttime="20221107 23:48:57.877" endtime="20221107 23:48:57.985"/>
+</for>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${TEMP_DICT}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221107 23:48:57.985" level="INFO">${TEMP_DICT} = {'Nom variable': 'cas_non_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'p...</msg>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.875" endtime="20221107 23:48:57.985"/>
+</kw>
+<kw name="Set To Dictionary" library="Collections">
+<arg>${TEMP_DICT_GLOBAL}</arg>
+<arg>${numero_cas_de_test_en_cours}</arg>
+<arg>${TEMP_DICT}</arg>
+<doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${numero_cas_de_test_en_cours}</var>
+<arg>${numero_cas_de_test_en_cours} + 1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221107 23:48:57.985" level="INFO">${numero_cas_de_test_en_cours} = 2</msg>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.874" endtime="20221107 23:48:57.985"/>
+</iter>
+<status status="PASS" starttime="20221107 23:48:57.749" endtime="20221107 23:48:57.985"/>
+</for>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${TEMP_DICT_GLOBAL}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221107 23:48:57.985" level="INFO">${TEMP_DICT_GLOBAL} = {'0': {'Nom variable': 'cas_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', ...</msg>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<kw name="Close All Excel Documents" library="ExcelLibrary">
+<doc>Closes all opened documents.</doc>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${TEMP_DICT_GLOBAL}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20221107 23:48:57.985" level="INFO">{'0': {'Nom variable': 'cas_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'pageConfiguration_produit': None, 'type_de_chauffage_actuel': 'Fioul', 'type_de_chauffage_souhaite': 'Pompe à chaleur', 'emetteur_de_chaleur_actuels': 'Chauffage au sol', 'type_de_logement': 'Maison individuelle', 'annee_de_construction': '2002-2007', 'type_renovation': 'Toiture', 'surface_habitable': '10', 'civilite': 'M.', 'prenom': 'nini', 'nom': 'nono', 'mail': 'nono@nini.fr', 'numero_de_telephone': '0611111111', 'numero_de_rue': '15', 'nom_rue': 'rue de la paix', 'code_postal': '49100', 'ville': 'Nantes', 'date_de_rendez_vous_souhaite': '01/01/2024'}, 1: {'Nom variable': 'cas_non_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'pageConfiguration_produit': None, 'type_de_chauffage_actuel': 'Fioul', 'type_de_chauffage_souhaite': 'Pompe a velo', 'emetteur_de_chaleur_actuels': 'Chauffage au sol', 'type_de_logement': 'Maison individuelle', 'annee_de_construction': '2002-2007', 'type_renovation': 'Toiture', 'surface_habitable': '10', 'civilite': 'M.', 'prenom': 'nini', 'nom': 'nono', 'mail': 'nono@nini.fr', 'numero_de_telephone': '0611111111', 'numero_de_rue': '15', 'nom_rue': 'rue de la paix', 'code_postal': '49100', 'ville': 'Nantes', 'date_de_rendez_vous_souhaite': '01/01/2024'}}</msg>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:57.985"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.736" endtime="20221107 23:48:57.985"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.733" endtime="20221107 23:48:57.985"/>
+</kw>
+<test id="s1-t1" name="cas_non_passant" line="31">
+<kw name="Debut du test case">
+<arg>1</arg>
+<kw name="Creer les variables du test" library="jdd">
+<arg>${choix_dico}</arg>
+<kw name="Get Dictionary Keys" library="Collections">
+<var>${liste_cle_dico}</var>
+<arg>${TEMP_DICT_GLOBAL}</arg>
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<msg timestamp="20221107 23:48:57.991" level="INFO">${liste_cle_dico} = ['0', 1]</msg>
+<status status="PASS" starttime="20221107 23:48:57.991" endtime="20221107 23:48:57.991"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${nb_liste_cle_dico}</var>
+<arg>${liste_cle_dico}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20221107 23:48:57.992" level="INFO">Length is 2</msg>
+<msg timestamp="20221107 23:48:57.992" level="INFO">${nb_liste_cle_dico} = 2</msg>
+<status status="PASS" starttime="20221107 23:48:57.991" endtime="20221107 23:48:57.992"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${liste_cle_dico}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20221107 23:48:57.993" level="INFO">['0', 1]</msg>
+<status status="PASS" starttime="20221107 23:48:57.992" endtime="20221107 23:48:57.993"/>
+</kw>
+<kw name="Selectionner un dictionnaire" library="jdd">
+<arg>${liste_cle_dico}</arg>
+<arg>${choix_dico}</arg>
+<kw name="Get From Dictionary" library="Collections">
+<var>${dico}</var>
+<arg>${TEMP_DICT_GLOBAL}</arg>
+<arg>${liste_cle_dico}[${numero_cle}]</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20221107 23:48:57.994" level="INFO">${dico} = {'Nom variable': 'cas_non_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'p...</msg>
+<status status="PASS" starttime="20221107 23:48:57.993" endtime="20221107 23:48:57.994"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${dico}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221107 23:48:57.995" level="INFO">${dico} = {'Nom variable': 'cas_non_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'p...</msg>
+<status status="PASS" starttime="20221107 23:48:57.994" endtime="20221107 23:48:57.995"/>
+</kw>
+<kw name="Log Variables" library="BuiltIn">
+<doc>Logs all variables in the current scope with given log level.</doc>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${/} = \</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${:} = ;</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${\n} = 
+</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${COLONNE_INUTILE} = 2</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${DEBUG_FILE} = NONE</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">&amp;{dico} = { Nom variable=cas_non_passant | Utilisation=Oui | None=None | url=https://www.saunierduval.fr/particulier/ | browser=chrome | pageAccueil=None | choisir_cookies=Tout refuser | pageConfiguration_produit=None | type_de_chauffage_actuel=Fioul | type_de_chauffage_souhaite=Pompe a velo | emetteur_de_chaleur_actuels=Chauffage au sol | type_de_logement=Maison individuelle | annee_de_construction=2002-2007 | type_renovation=Toiture | surface_habitable=10 | civilite=M. | prenom=nini | nom=nono | mail=nono@nini.fr | numero_de_telephone=0611111111 | numero_de_rue=15 | nom_rue=rue de la paix | code_postal=49100 | ville=Nantes | date_de_rendez_vous_souhaite=01/01/2024 }</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${DOWNLOAD_DIR} = C:\Users\ndfdf\Documents\GitHub\presentation_robot</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${EXCEL_FEUILLE} = feuille_jdd</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${EXCEL_FILE_CHEMIN} = C:\Users\ndfdf\Documents\GitHub\presentation_robot/JDD.xlsx</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${EXECDIR} = C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${False} = False</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${GLOBAL_TIMEOUT} = 5 seconds</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">@{liste_cle_dico} = [ 0 | 1 ]</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${LOG_FILE} = C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers\log.html</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${LOG_LEVEL} = INFO</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${NAVIGATEUR} = chrome</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${None} = None</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${null} = None</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${numero_cle} = 1</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">&amp;{OPTIONS} = { include=[] | exclude=[] | skip=[] | skip_on_failure=[] }</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${OUTPUT_DIR} = C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${OUTPUT_FILE} = C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers\output.xml</msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${PREV_TEST_MESSAGE} = </msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${PREV_TEST_NAME} = </msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${PREV_TEST_STATUS} = </msg>
+<msg timestamp="20221107 23:48:57.997" level="INFO">${REPORT_FILE} = C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers\report.html</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${ROBOT_DEPLOY_CHEMIN} = C:\Users\ndfdf\Documents\GitHub\presentation_robot/application/template/data_template.robot</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${SPACE} =  </msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${SUITE_DOCUMENTATION} = </msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">&amp;{SUITE_METADATA} = { }</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${SUITE_NAME} = testSuiteGenerated</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${SUITE_SOURCE} = C:\Users\ndfdf\Documents\GitHub\presentation_robot\metiers\testSuiteGenerated.robot</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">&amp;{TEMP_DICT} = { Nom variable=cas_non_passant | Utilisation=Oui | None=None | url=https://www.saunierduval.fr/particulier/ | browser=chrome | pageAccueil=None | choisir_cookies=Tout refuser | pageConfiguration_produit=None | type_de_chauffage_actuel=Fioul | type_de_chauffage_souhaite=Pompe a velo | emetteur_de_chaleur_actuels=Chauffage au sol | type_de_logement=Maison individuelle | annee_de_construction=2002-2007 | type_renovation=Toiture | surface_habitable=10 | civilite=M. | prenom=nini | nom=nono | mail=nono@nini.fr | numero_de_telephone=0611111111 | numero_de_rue=15 | nom_rue=rue de la paix | code_postal=49100 | ville=Nantes | date_de_rendez_vous_souhaite=01/01/2024 }</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">&amp;{TEMP_DICT_GLOBAL} = { 0={'Nom variable': 'cas_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'pageConfiguration_produit': None, 'type_de_chauffage_actuel': 'Fioul', 'type_de_chauffage_souhaite': 'Pompe à chaleur', 'emetteur_de_chaleur_actuels': 'Chauffage au sol', 'type_de_logement': 'Maison individuelle', 'annee_de_construction': '2002-2007', 'type_renovation': 'Toiture', 'surface_habitable': '10', 'civilite': 'M.', 'prenom': 'nini', 'nom': 'nono', 'mail': 'nono@nini.fr', 'numero_de_telephone': '0611111111', 'numero_de_rue': '15', 'nom_rue': 'rue de la paix', 'code_postal': '49100', 'ville': 'Nantes', 'date_de_rendez_vous_souhaite': '01/01/2024'} | 1={'Nom variable': 'cas_non_passant', 'Utilisation': 'Oui', None: None, 'url': 'https://www.saunierduval.fr/particulier/', 'browser': 'chrome', 'pageAccueil': None, 'choisir_cookies': 'Tout refuser', 'pageConfiguration_produit': None, 'type_de_chauffage_actuel': 'Fioul', 'type_de_chauffage_souhaite': 'Pompe a velo', 'emetteur_de_chaleur_actuels': 'Chauffage au sol', 'type_de_logement': 'Maison individuelle', 'annee_de_construction': '2002-2007', 'type_renovation': 'Toiture', 'surface_habitable': '10', 'civilite': 'M.', 'prenom': 'nini', 'nom': 'nono', 'mail': 'nono@nini.fr', 'numero_de_telephone': '0611111111', 'numero_de_rue': '15', 'nom_rue': 'rue de la paix', 'code_postal': '49100', 'ville': 'Nantes', 'date_de_rendez_vous_souhaite': '01/01/2024'} }</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${TEMPDIR} = C:\Users\ndfdf\AppData\Local\Temp</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${TEST_DOCUMENTATION} = </msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${TEST_NAME} = cas_non_passant</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">@{TEST_TAGS} = [ ]</msg>
+<msg timestamp="20221107 23:48:57.998" level="INFO">${True} = True</msg>
+<status status="PASS" starttime="20221107 23:48:57.996" endtime="20221107 23:48:57.998"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:57.993" endtime="20221107 23:48:57.999"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${nbVar}</var>
+<arg>${dico}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20221107 23:48:58.000" level="INFO">Length is 25</msg>
+<msg timestamp="20221107 23:48:58.000" level="INFO">${nbVar} = 25</msg>
+<status status="PASS" starttime="20221107 23:48:57.999" endtime="20221107 23:48:58.000"/>
+</kw>
+<for flavor="IN">
+<var>${index}</var>
+<value>@{dico}</value>
+<iter>
+<var name="${index}">Nom variable</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.002" level="INFO">${var} = Nom variable</msg>
+<status status="PASS" starttime="20221107 23:48:58.001" endtime="20221107 23:48:58.002"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.003" level="INFO">${index} = cas_non_passant</msg>
+<status status="PASS" starttime="20221107 23:48:58.003" endtime="20221107 23:48:58.003"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.005" level="INFO">${Nom variable} = cas_non_passant</msg>
+<status status="PASS" starttime="20221107 23:48:58.004" endtime="20221107 23:48:58.005"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.001" endtime="20221107 23:48:58.005"/>
+</iter>
+<iter>
+<var name="${index}">Utilisation</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.006" level="INFO">${var} = Utilisation</msg>
+<status status="PASS" starttime="20221107 23:48:58.005" endtime="20221107 23:48:58.006"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.006" level="INFO">${index} = Oui</msg>
+<status status="PASS" starttime="20221107 23:48:58.006" endtime="20221107 23:48:58.006"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.007" level="INFO">${Utilisation} = Oui</msg>
+<status status="PASS" starttime="20221107 23:48:58.006" endtime="20221107 23:48:58.007"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.005" endtime="20221107 23:48:58.007"/>
+</iter>
+<iter>
+<var name="${index}">None</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.008" level="INFO">${var} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.008" endtime="20221107 23:48:58.008"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.008" level="INFO">${index} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.008" endtime="20221107 23:48:58.008"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.009" level="INFO">${None} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.008" endtime="20221107 23:48:58.009"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.007" endtime="20221107 23:48:58.009"/>
+</iter>
+<iter>
+<var name="${index}">url</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.009" level="INFO">${var} = url</msg>
+<status status="PASS" starttime="20221107 23:48:58.009" endtime="20221107 23:48:58.009"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.010" level="INFO">${index} = https://www.saunierduval.fr/particulier/</msg>
+<status status="PASS" starttime="20221107 23:48:58.009" endtime="20221107 23:48:58.010"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.011" level="INFO">${url} = https://www.saunierduval.fr/particulier/</msg>
+<status status="PASS" starttime="20221107 23:48:58.010" endtime="20221107 23:48:58.011"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.009" endtime="20221107 23:48:58.011"/>
+</iter>
+<iter>
+<var name="${index}">browser</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.011" level="INFO">${var} = browser</msg>
+<status status="PASS" starttime="20221107 23:48:58.011" endtime="20221107 23:48:58.011"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.012" level="INFO">${index} = chrome</msg>
+<status status="PASS" starttime="20221107 23:48:58.011" endtime="20221107 23:48:58.012"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.013" level="INFO">${browser} = chrome</msg>
+<status status="PASS" starttime="20221107 23:48:58.012" endtime="20221107 23:48:58.013"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.011" endtime="20221107 23:48:58.013"/>
+</iter>
+<iter>
+<var name="${index}">pageAccueil</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.013" level="INFO">${var} = pageAccueil</msg>
+<status status="PASS" starttime="20221107 23:48:58.013" endtime="20221107 23:48:58.013"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.014" level="INFO">${index} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.013" endtime="20221107 23:48:58.014"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.015" level="INFO">${pageAccueil} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.014" endtime="20221107 23:48:58.015"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.013" endtime="20221107 23:48:58.015"/>
+</iter>
+<iter>
+<var name="${index}">choisir_cookies</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.015" level="INFO">${var} = choisir_cookies</msg>
+<status status="PASS" starttime="20221107 23:48:58.015" endtime="20221107 23:48:58.015"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.016" level="INFO">${index} = Tout refuser</msg>
+<status status="PASS" starttime="20221107 23:48:58.015" endtime="20221107 23:48:58.016"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.017" level="INFO">${choisir_cookies} = Tout refuser</msg>
+<status status="PASS" starttime="20221107 23:48:58.016" endtime="20221107 23:48:58.017"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.015" endtime="20221107 23:48:58.017"/>
+</iter>
+<iter>
+<var name="${index}">pageConfiguration_produit</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.018" level="INFO">${var} = pageConfiguration_produit</msg>
+<status status="PASS" starttime="20221107 23:48:58.017" endtime="20221107 23:48:58.018"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.018" level="INFO">${index} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.018" endtime="20221107 23:48:58.018"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.019" level="INFO">${pageConfiguration_produit} = None</msg>
+<status status="PASS" starttime="20221107 23:48:58.018" endtime="20221107 23:48:58.019"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.017" endtime="20221107 23:48:58.019"/>
+</iter>
+<iter>
+<var name="${index}">type_de_chauffage_actuel</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.020" level="INFO">${var} = type_de_chauffage_actuel</msg>
+<status status="PASS" starttime="20221107 23:48:58.020" endtime="20221107 23:48:58.020"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.020" level="INFO">${index} = Fioul</msg>
+<status status="PASS" starttime="20221107 23:48:58.020" endtime="20221107 23:48:58.020"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.022" level="INFO">${type_de_chauffage_actuel} = Fioul</msg>
+<status status="PASS" starttime="20221107 23:48:58.021" endtime="20221107 23:48:58.022"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.020" endtime="20221107 23:48:58.022"/>
+</iter>
+<iter>
+<var name="${index}">type_de_chauffage_souhaite</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.022" level="INFO">${var} = type_de_chauffage_souhaite</msg>
+<status status="PASS" starttime="20221107 23:48:58.022" endtime="20221107 23:48:58.022"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.022" level="INFO">${index} = Pompe a velo</msg>
+<status status="PASS" starttime="20221107 23:48:58.022" endtime="20221107 23:48:58.023"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.024" level="INFO">${type_de_chauffage_souhaite} = Pompe a velo</msg>
+<status status="PASS" starttime="20221107 23:48:58.023" endtime="20221107 23:48:58.024"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.022" endtime="20221107 23:48:58.024"/>
+</iter>
+<iter>
+<var name="${index}">emetteur_de_chaleur_actuels</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.024" level="INFO">${var} = emetteur_de_chaleur_actuels</msg>
+<status status="PASS" starttime="20221107 23:48:58.024" endtime="20221107 23:48:58.024"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.025" level="INFO">${index} = Chauffage au sol</msg>
+<status status="PASS" starttime="20221107 23:48:58.024" endtime="20221107 23:48:58.025"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.026" level="INFO">${emetteur_de_chaleur_actuels} = Chauffage au sol</msg>
+<status status="PASS" starttime="20221107 23:48:58.025" endtime="20221107 23:48:58.026"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.024" endtime="20221107 23:48:58.026"/>
+</iter>
+<iter>
+<var name="${index}">type_de_logement</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.026" level="INFO">${var} = type_de_logement</msg>
+<status status="PASS" starttime="20221107 23:48:58.026" endtime="20221107 23:48:58.026"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.027" level="INFO">${index} = Maison individuelle</msg>
+<status status="PASS" starttime="20221107 23:48:58.026" endtime="20221107 23:48:58.027"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.028" level="INFO">${type_de_logement} = Maison individuelle</msg>
+<status status="PASS" starttime="20221107 23:48:58.027" endtime="20221107 23:48:58.028"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.026" endtime="20221107 23:48:58.028"/>
+</iter>
+<iter>
+<var name="${index}">annee_de_construction</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.028" level="INFO">${var} = annee_de_construction</msg>
+<status status="PASS" starttime="20221107 23:48:58.028" endtime="20221107 23:48:58.028"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.029" level="INFO">${index} = 2002-2007</msg>
+<status status="PASS" starttime="20221107 23:48:58.029" endtime="20221107 23:48:58.029"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.030" level="INFO">${annee_de_construction} = 2002-2007</msg>
+<status status="PASS" starttime="20221107 23:48:58.029" endtime="20221107 23:48:58.030"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.028" endtime="20221107 23:48:58.030"/>
+</iter>
+<iter>
+<var name="${index}">type_renovation</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.031" level="INFO">${var} = type_renovation</msg>
+<status status="PASS" starttime="20221107 23:48:58.030" endtime="20221107 23:48:58.031"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.031" level="INFO">${index} = Toiture</msg>
+<status status="PASS" starttime="20221107 23:48:58.031" endtime="20221107 23:48:58.031"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.032" level="INFO">${type_renovation} = Toiture</msg>
+<status status="PASS" starttime="20221107 23:48:58.031" endtime="20221107 23:48:58.032"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.030" endtime="20221107 23:48:58.032"/>
+</iter>
+<iter>
+<var name="${index}">surface_habitable</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.033" level="INFO">${var} = surface_habitable</msg>
+<status status="PASS" starttime="20221107 23:48:58.032" endtime="20221107 23:48:58.033"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.033" level="INFO">${index} = 10</msg>
+<status status="PASS" starttime="20221107 23:48:58.033" endtime="20221107 23:48:58.033"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.035" level="INFO">${surface_habitable} = 10</msg>
+<status status="PASS" starttime="20221107 23:48:58.033" endtime="20221107 23:48:58.035"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.032" endtime="20221107 23:48:58.035"/>
+</iter>
+<iter>
+<var name="${index}">civilite</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.035" level="INFO">${var} = civilite</msg>
+<status status="PASS" starttime="20221107 23:48:58.035" endtime="20221107 23:48:58.035"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.036" level="INFO">${index} = M.</msg>
+<status status="PASS" starttime="20221107 23:48:58.036" endtime="20221107 23:48:58.036"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.037" level="INFO">${civilite} = M.</msg>
+<status status="PASS" starttime="20221107 23:48:58.036" endtime="20221107 23:48:58.037"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.035" endtime="20221107 23:48:58.037"/>
+</iter>
+<iter>
+<var name="${index}">prenom</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.038" level="INFO">${var} = prenom</msg>
+<status status="PASS" starttime="20221107 23:48:58.037" endtime="20221107 23:48:58.038"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.038" level="INFO">${index} = nini</msg>
+<status status="PASS" starttime="20221107 23:48:58.038" endtime="20221107 23:48:58.038"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.039" level="INFO">${prenom} = nini</msg>
+<status status="PASS" starttime="20221107 23:48:58.038" endtime="20221107 23:48:58.039"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.037" endtime="20221107 23:48:58.039"/>
+</iter>
+<iter>
+<var name="${index}">nom</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.040" level="INFO">${var} = nom</msg>
+<status status="PASS" starttime="20221107 23:48:58.039" endtime="20221107 23:48:58.040"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.040" level="INFO">${index} = nono</msg>
+<status status="PASS" starttime="20221107 23:48:58.040" endtime="20221107 23:48:58.040"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.041" level="INFO">${nom} = nono</msg>
+<status status="PASS" starttime="20221107 23:48:58.040" endtime="20221107 23:48:58.041"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.039" endtime="20221107 23:48:58.041"/>
+</iter>
+<iter>
+<var name="${index}">mail</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.042" level="INFO">${var} = mail</msg>
+<status status="PASS" starttime="20221107 23:48:58.042" endtime="20221107 23:48:58.042"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.042" level="INFO">${index} = nono@nini.fr</msg>
+<status status="PASS" starttime="20221107 23:48:58.042" endtime="20221107 23:48:58.042"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.044" level="INFO">${mail} = nono@nini.fr</msg>
+<status status="PASS" starttime="20221107 23:48:58.042" endtime="20221107 23:48:58.044"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.041" endtime="20221107 23:48:58.044"/>
+</iter>
+<iter>
+<var name="${index}">numero_de_telephone</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.044" level="INFO">${var} = numero_de_telephone</msg>
+<status status="PASS" starttime="20221107 23:48:58.044" endtime="20221107 23:48:58.044"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.044" level="INFO">${index} = 0611111111</msg>
+<status status="PASS" starttime="20221107 23:48:58.044" endtime="20221107 23:48:58.045"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.046" level="INFO">${numero_de_telephone} = 0611111111</msg>
+<status status="PASS" starttime="20221107 23:48:58.045" endtime="20221107 23:48:58.046"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.044" endtime="20221107 23:48:58.046"/>
+</iter>
+<iter>
+<var name="${index}">numero_de_rue</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.046" level="INFO">${var} = numero_de_rue</msg>
+<status status="PASS" starttime="20221107 23:48:58.046" endtime="20221107 23:48:58.046"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.047" level="INFO">${index} = 15</msg>
+<status status="PASS" starttime="20221107 23:48:58.046" endtime="20221107 23:48:58.047"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.048" level="INFO">${numero_de_rue} = 15</msg>
+<status status="PASS" starttime="20221107 23:48:58.047" endtime="20221107 23:48:58.048"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.046" endtime="20221107 23:48:58.048"/>
+</iter>
+<iter>
+<var name="${index}">nom_rue</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.048" level="INFO">${var} = nom_rue</msg>
+<status status="PASS" starttime="20221107 23:48:58.048" endtime="20221107 23:48:58.048"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.049" level="INFO">${index} = rue de la paix</msg>
+<status status="PASS" starttime="20221107 23:48:58.049" endtime="20221107 23:48:58.049"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.050" level="INFO">${nom_rue} = rue de la paix</msg>
+<status status="PASS" starttime="20221107 23:48:58.049" endtime="20221107 23:48:58.050"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.048" endtime="20221107 23:48:58.050"/>
+</iter>
+<iter>
+<var name="${index}">code_postal</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.051" level="INFO">${var} = code_postal</msg>
+<status status="PASS" starttime="20221107 23:48:58.051" endtime="20221107 23:48:58.051"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.051" level="INFO">${index} = 49100</msg>
+<status status="PASS" starttime="20221107 23:48:58.051" endtime="20221107 23:48:58.051"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${code_postal} = 49100</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.051" endtime="20221107 23:48:58.052"/>
+</iter>
+<iter>
+<var name="${index}">ville</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${var} = ville</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${index} = Nantes</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${ville} = Nantes</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</iter>
+<iter>
+<var name="${index}">date_de_rendez_vous_souhaite</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${var}</var>
+<arg>${index}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${var} = date_de_rendez_vous_souhaite</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${index}</arg>
+<arg>${dico}[${index}]</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${index} = 01/01/2024</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${${var}}</arg>
+<arg>${index}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">${date_de_rendez_vous_souhaite} = 01/01/2024</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:48:58.052"/>
+</iter>
+<status status="PASS" starttime="20221107 23:48:58.000" endtime="20221107 23:48:58.052"/>
+</for>
+<status status="PASS" starttime="20221107 23:48:57.985" endtime="20221107 23:48:58.052"/>
+</kw>
+<kw name="Parcours configurateur de produit" library="test_auto">
+<kw name="Connexion au site" library="commun">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20221107 23:48:58.052" level="INFO">Opening browser 'chrome' to base url 'https://www.saunierduval.fr/particulier/'.</msg>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:49:01.409"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20221107 23:49:01.409" endtime="20221107 23:49:01.563"/>
+</kw>
+<kw name="Choisir utilisation des cookies" library="commun">
+<kw name="Cliquer sur element" library="commun">
+<arg>locator=//*[@id="cookiewarning"]//a[contains(text(), "${choisir_cookies}")]</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non present sur la page</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221107 23:49:01.572" endtime="20221107 23:49:01.632"/>
+</kw>
+<kw name="Scroller vers element" library="commun">
+<arg>locator=${locator}</arg>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20221107 23:49:01.634" endtime="20221107 23:49:01.937"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:01.632" endtime="20221107 23:49:01.938"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non visible sur la page</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221107 23:49:01.939" endtime="20221107 23:49:01.973"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non chargé completement</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20221107 23:49:01.973" endtime="20221107 23:49:02.012"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>3x</arg>
+<arg>1 sec</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>locator=${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221107 23:49:02.013" level="INFO">Clicking element '//*[@id="cookiewarning"]//a[contains(text(), "Tout refuser")]'.</msg>
+<status status="PASS" starttime="20221107 23:49:02.012" endtime="20221107 23:49:02.072"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.012" endtime="20221107 23:49:02.072"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:01.566" endtime="20221107 23:49:02.072"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:01.564" endtime="20221107 23:49:02.072"/>
+</kw>
+<status status="PASS" starttime="20221107 23:48:58.052" endtime="20221107 23:49:02.073"/>
+</kw>
+<kw name="Acceder au configurateur de produit" library="pageAccueil">
+<kw name="Cliquer sur produit et documentation" library="pageAccueil">
+<kw name="Cliquer sur element" library="commun">
+<arg>locator=//a[contains(text(), "Produits et documentations")]</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non present sur la page</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221107 23:49:02.075" endtime="20221107 23:49:02.090"/>
+</kw>
+<kw name="Scroller vers element" library="commun">
+<arg>locator=${locator}</arg>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20221107 23:49:02.091" endtime="20221107 23:49:02.374"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.090" endtime="20221107 23:49:02.375"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non visible sur la page</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221107 23:49:02.375" endtime="20221107 23:49:02.402"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non chargé completement</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20221107 23:49:02.403" endtime="20221107 23:49:02.441"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>3x</arg>
+<arg>1 sec</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>locator=${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221107 23:49:02.442" level="INFO">Clicking element '//a[contains(text(), "Produits et documentations")]'.</msg>
+<status status="PASS" starttime="20221107 23:49:02.442" endtime="20221107 23:49:02.496"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.442" endtime="20221107 23:49:02.496"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.074" endtime="20221107 23:49:02.496"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.073" endtime="20221107 23:49:02.496"/>
+</kw>
+<kw name="Cliquer sur configurateur de produits" library="pageAccueil">
+<kw name="Cliquer sur element" library="commun">
+<arg>locator=//a[contains(text(), "Configurateur produits")]</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non present sur la page</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221107 23:49:02.498" endtime="20221107 23:49:02.511"/>
+</kw>
+<kw name="Scroller vers element" library="commun">
+<arg>locator=${locator}</arg>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20221107 23:49:02.512" endtime="20221107 23:49:02.795"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.511" endtime="20221107 23:49:02.795"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non visible sur la page</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221107 23:49:02.795" endtime="20221107 23:49:02.826"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non chargé completement</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20221107 23:49:02.826" endtime="20221107 23:49:02.857"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>3x</arg>
+<arg>1 sec</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>locator=${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221107 23:49:02.857" level="INFO">Clicking element '//a[contains(text(), "Configurateur produits")]'.</msg>
+<status status="PASS" starttime="20221107 23:49:02.857" endtime="20221107 23:49:03.978"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.857" endtime="20221107 23:49:03.979"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.497" endtime="20221107 23:49:03.979"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.496" endtime="20221107 23:49:03.979"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:02.073" endtime="20221107 23:49:03.979"/>
+</kw>
+<kw name="Configuration produit" library="pageConfiguration_produit">
+<kw name="Configurer le produit" library="pageConfiguration_produit">
+<kw name="Choisir type de chauffage actuel" library="pageConfiguration_produit">
+<kw name="Cliquer sur element" library="commun">
+<arg>locator=//label[contains(text(), "${type_de_chauffage_actuel}")]/..</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non present sur la page</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221107 23:49:03.982" endtime="20221107 23:49:03.996"/>
+</kw>
+<kw name="Scroller vers element" library="commun">
+<arg>locator=${locator}</arg>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20221107 23:49:03.997" endtime="20221107 23:49:04.279"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:03.996" endtime="20221107 23:49:04.280"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non visible sur la page</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20221107 23:49:04.280" endtime="20221107 23:49:04.318"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non chargé completement</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20221107 23:49:04.318" endtime="20221107 23:49:04.347"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>3x</arg>
+<arg>1 sec</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>locator=${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20221107 23:49:04.348" level="INFO">Clicking element '//label[contains(text(), "Fioul")]/..'.</msg>
+<status status="PASS" starttime="20221107 23:49:04.348" endtime="20221107 23:49:04.400"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:04.347" endtime="20221107 23:49:04.400"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:03.981" endtime="20221107 23:49:04.401"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:03.981" endtime="20221107 23:49:04.401"/>
+</kw>
+<kw name="Choisir type de chauffage souhaite" library="pageConfiguration_produit">
+<kw name="Cliquer sur element" library="commun">
+<arg>locator=//label[contains(text(), "${type_de_chauffage_souhaite}")]/..</arg>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non present sur la page</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<msg timestamp="20221107 23:49:09.830" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20221107 23:49:09.846" level="FAIL">Element non present sur la page</msg>
+<status status="FAIL" starttime="20221107 23:49:04.404" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Scroller vers element" library="commun">
+<arg>locator=${locator}</arg>
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non visible sur la page</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>locator=${locator}</arg>
+<arg>error=Element non chargé completement</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>3x</arg>
+<arg>1 sec</arg>
+<arg>SeleniumLibrary.Click Element</arg>
+<arg>locator=${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:49:04.402" endtime="20221107 23:49:09.846"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:49:04.401" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Choisir emetteurs de chaleur actuels" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Choisir type de logement" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Choisir annee de construction" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Choisir renovation" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Choisir Surface habitable" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:49:03.980" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Renseigner coordonnees" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Cocher checkbox obligatoire" library="pageConfiguration_produit">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Cliquer sur element" library="commun">
+<arg>locator=//span[contains(text(), "Valider")]/..</arg>
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:49:03.979" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Verifier validation produit" library="pageValidation">
+<status status="NOT RUN" starttime="20221107 23:49:09.846" endtime="20221107 23:49:09.846"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:48:58.052" endtime="20221107 23:49:09.846"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:48:57.985" endtime="20221107 23:49:09.846"/>
+</kw>
+<kw name="Fermeture Navigateur" type="TEARDOWN">
+<kw name="Run Keyword If Test Passed" library="BuiltIn">
+<arg>SeleniumLibrary.Close All Browsers</arg>
+<doc>Runs the given keyword with the given arguments, if the test passed.</doc>
+<status status="PASS" starttime="20221107 23:49:09.856" endtime="20221107 23:49:09.856"/>
+</kw>
+<kw name="Run Keyword If Test Failed" library="BuiltIn">
+<arg>SeleniumLibrary.Close All Browsers</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20221107 23:49:09.856" endtime="20221107 23:49:12.146"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:09.856" endtime="20221107 23:49:12.146"/>
+</kw>
+<status status="PASS" starttime="20221107 23:49:09.846" endtime="20221107 23:49:12.146"/>
+</kw>
+<status status="FAIL" starttime="20221107 23:48:57.985" endtime="20221107 23:49:12.146">Element non present sur la page</status>
+</test>
+<status status="FAIL" starttime="20221107 23:48:56.754" endtime="20221107 23:49:12.152"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="testSuiteGenerated">testSuiteGenerated</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

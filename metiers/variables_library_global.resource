@@ -8,6 +8,7 @@ Library         SeleniumLibrary
 Library         BuiltIn
 Library         Process
 Library         DateTime
+Library         ScreenCapLibrary
 Resource        %{WORKSPACE_PRESENSATION_ROBOT}/metiers/jdd.resource
 #Les resources des pages :
 Resource        %{WORKSPACE_PRESENSATION_ROBOT}/application/commun.resource
@@ -23,6 +24,6 @@ ${EXCEL_FILE_CHEMIN}            %{WORKSPACE_PRESENSATION_ROBOT}/JDD.xlsx
 ${COLONNE_INUTILE}              2
 ${ROBOT_DEPLOY_CHEMIN}          %{WORKSPACE_PRESENSATION_ROBOT}/application/template/data_template.robot
 ${EXCEL_FEUILLE}                feuille_jdd
-${GLOBAL_TIMEOUT}               30 seconds
+${GLOBAL_TIMEOUT}               5 seconds
 ${DOWNLOAD_DIR}                 %{WORKSPACE_PRESENSATION_ROBOT}
 ${NAVIGATEUR}                   chrome
